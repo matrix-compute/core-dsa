@@ -64,27 +64,6 @@ class LinkedList {
   }
 
   /**
-   * Searches the LinkedList for the given value. Returns the first instance of the value in the LinkedList or `null` if the value does not exist in the LinkedList.
-   * 
-   * Time complexity: `O(n)`, n being the total number of ListNodes in the LinkedList to search.
-   * 
-   * Space complexity: `O(1)`, no additional space is being used to search through the LinkedList.
-   * 
-   * @param value The value to search the LinkedList for.
-   * @returns ListNode if successful, `null` if the value was not found in the LinkedList
-   */
-  find(value: string| number) {
-    let currentNode = this.head;
-
-    if (!currentNode) return null;
-
-    while (currentNode) {
-        if (currentNode.value === value) return currentNode;
-        currentNode = currentNode.next;
-    }
-  }
-
-  /**
    * Adds a new ListNode to the LinkedList. New ListNode will be added as the `.next` value of the requested ListNode.
    * 
    * Time complexity: `O(n + m)`, `n` being the number of ListNodes we must search through in order to determine if the value `node` exists in the LinkedList, `m` being the number of ListNodes we must search for in finding the last node.
@@ -113,27 +92,24 @@ class LinkedList {
   }
 
   /**
-   * Prints a string representation of the LinkedList.
+   * Searches the LinkedList for the given value. Returns the first instance of the value in the LinkedList or `null` if the value does not exist in the LinkedList.
    * 
-   * Time complexity: `O(n)`, as we are iterating through each ListNode in the LinkedList in order to add its value to a temporary array of which we convert into the final string representation.
+   * Time complexity: `O(n)`, n being the total number of ListNodes in the LinkedList to search.
    * 
-   * Space complexity: `O(n)`, we take up `n` storage in memory, storing each value of `n` number of ListNodes in the LinkedList.
+   * Space complexity: `O(1)`, no additional space is being used to search through the LinkedList.
    * 
-   * @returns String representation of LinkedList | `null`
+   * @param value The value to search the LinkedList for.
+   * @returns ListNode if successful, `null` if the value was not found in the LinkedList
    */
-  print() {
-    let values = [];
-
+  find(value: string| number) {
     let currentNode = this.head;
 
-    if(!currentNode) return null;
+    if (!currentNode) return null;
 
     while (currentNode) {
-        values.push(currentNode.value);
-        currentNode = currentNode.next
+        if (currentNode.value === value) return currentNode;
+        currentNode = currentNode.next;
     }
-
-    return values.join(" > ");
   }
 
   getFirst() {
@@ -157,6 +133,30 @@ class LinkedList {
       node = node.next;
     }
     return count;
+  }
+
+  /**
+   * Prints a string representation of the LinkedList.
+   * 
+   * Time complexity: `O(n)`, as we are iterating through each ListNode in the LinkedList in order to add its value to a temporary array of which we convert into the final string representation.
+   * 
+   * Space complexity: `O(n)`, we take up `n` storage in memory, storing each value of `n` number of ListNodes in the LinkedList.
+   * 
+   * @returns String representation of LinkedList | `null`
+   */
+  print() {
+    let values = [];
+
+    let currentNode = this.head;
+
+    if(!currentNode) return null;
+
+    while (currentNode) {
+        values.push(currentNode.value);
+        currentNode = currentNode.next
+    }
+
+    return values.join(" > ");
   }
 
   /**
