@@ -95,7 +95,7 @@ var LinkedList = /** @class */ (function () {
         // Assign the new .next value of found node to the node we want to add
         searchNode.next = node;
         var lastNode = findLast(node);
-        // Assign the .next value of the new node we added to our found node to the original .next value stored in temp
+        // Assign the .next value of the last node of the node we passed in to the original .next value stored in temp
         lastNode.next = temp;
     };
     /**
