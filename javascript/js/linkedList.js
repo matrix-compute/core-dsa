@@ -2,7 +2,9 @@
  * Finds the last ListNode in any given ListNode of a LinkedList.
  *
  * Time complexity: `O(n)`, `n` being the number of ListNodes in the LinkedList.
+ *
  * Space complexity: `O(1)`, no additional space is being used to search through the LinkedList.
+ *
  * @param node ListNode in which you want to find the last ListNode
  * @returns Last ListNode in the LinkedList
  */
@@ -36,6 +38,7 @@ var LinkedList = /** @class */ (function () {
      * Time complexity: `O(1)` if added to the head. Otherwise, `O(n)` due to traveling to the last ListNode in order to add the new ListNode.
      *
      * Space complexity: `O(n)`, `n` being the number of nodes in the ListNode being added.
+     *
      * @returns Length of linked list
      */
     LinkedList.prototype.add = function (node) {
@@ -55,7 +58,9 @@ var LinkedList = /** @class */ (function () {
      * Searches the LinkedList for the given value. Returns the first instance of the value in the LinkedList or `null` if the value does not exist in the LinkedList.
      *
      * Time complexity: `O(n)`, n being the total number of ListNodes in the LinkedList to search.
+     *
      * Space complexity: `O(1)`, no additional space is being used to search through the LinkedList.
+     *
      * @param value The value to search the LinkedList for.
      * @returns ListNode
      */
@@ -74,7 +79,9 @@ var LinkedList = /** @class */ (function () {
      * Adds a new ListNode to the LinkedList. New ListNode will be added as the `.next` value of the requested ListNode.
      *
      * Time complexity: `O(n + m)`, `n` being the number of ListNodes we must search through in order to determine if the value `node` exists in the LinkedList, `m` being the number of ListNodes we must search for in finding the last node.
+     *
      * Space complexity: `O(1)`, no additional space is being used to search through the LinkedList.
+     *
      * @param value The ListNode value we are searching for and modifying.
      * @param node The ListNode node we are adding.
      * @returns `void` if successful, otherwise `null` if the `value` is not found in the LinkedList.
@@ -97,6 +104,7 @@ var LinkedList = /** @class */ (function () {
      * Time complexity: `O(n)`, as we are iterating through each ListNode in the LinkedList in order to add its value to a temporary array of which we convert into the final string representation.
      *
      * Space complexity: `O(n)`, we take up `n` storage in memory, storing each value of `n` number of ListNodes in the LinkedList.
+     *
      * @returns String representation of LinkedList | `null`
      */
     LinkedList.prototype.print = function () {
@@ -118,6 +126,7 @@ var LinkedList = /** @class */ (function () {
      * Time complexity: `O(n)`
      *
      * Space complexity: `O(1)`
+     *
      * @returns Length of linked list
      */
     LinkedList.prototype.getSize = function () {
