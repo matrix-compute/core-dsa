@@ -33,22 +33,22 @@ var LinkedList = /** @class */ (function () {
         this.head = head;
     }
     /**
-     * Adds a ListNode to the linked list.
+     * Adds a ListNode to the end of the LinkedList.
      *
      * Time complexity: `O(1)` if added to the head. Otherwise, `O(n)` due to traveling to the last ListNode in order to add the new ListNode.
      *
      * Space complexity: `O(n)`, `n` being the number of nodes in the ListNode being added.
      *
-     * @returns Length of linked list
+     * @returns Length of LinkedList
      */
     LinkedList.prototype.add = function (node) {
         var currentNode = this.head;
-        // If the list is empty then add an element and it will be head
+        // If the list is empty, then make the head the ListNode passed in to this function.
         if (!currentNode) {
             this.head = node;
             return;
         }
-        // If the list is not empty then iterate to the end of the list and add an element at the end of the list
+        // If the list is not empty, iterate to the end of the list and add the ListNode at the end of the list.
         while (currentNode.next) {
             currentNode = currentNode.next;
         }
@@ -62,7 +62,7 @@ var LinkedList = /** @class */ (function () {
      * Space complexity: `O(1)`, no additional space is being used to search through the LinkedList.
      *
      * @param value The value to search the LinkedList for.
-     * @returns ListNode
+     * @returns ListNode if successful, `null` if the value was not found in the LinkedList
      */
     LinkedList.prototype.find = function (value) {
         var currentNode = this.head;
@@ -73,7 +73,6 @@ var LinkedList = /** @class */ (function () {
                 return currentNode;
             currentNode = currentNode.next;
         }
-        return null;
     };
     /**
      * Adds a new ListNode to the LinkedList. New ListNode will be added as the `.next` value of the requested ListNode.
@@ -121,13 +120,13 @@ var LinkedList = /** @class */ (function () {
     LinkedList.prototype.getFirst = function () {
     };
     /**
-     * Determines length of linked list.
+     * Determines length of LinkedList.
      *
      * Time complexity: `O(n)`
      *
      * Space complexity: `O(1)`
      *
-     * @returns Length of linked list
+     * @returns Length of LinkedList
      */
     LinkedList.prototype.getSize = function () {
         var count = 0;
@@ -138,27 +137,32 @@ var LinkedList = /** @class */ (function () {
         }
         return count;
     };
+    /**
+     * Removes the first ListNode from the LinkedList with the given `value`.
+     *
+     * Time complexity: `O(n)`, `n` being the number of ListNodes in the LinkedList, since we may have to search the entire LinkedList.
+     *
+     * Space complexity: `O(1)`, no additional space is being used to search through and remove the ListNode from the LinkedList.
+     *
+     * @param value The ListNode we are wanting to remove.
+     * @returns `void` if the ListNode was removed successfully | `null` if the ListNode value does not exist in the LinkedList.
+     */
+    LinkedList.prototype.remove = function (value) {
+        var currentNode = this.head;
+        while (currentNode) {
+            if (currentNode.next.value === value) {
+                var temp = currentNode.next.next;
+                currentNode.next = temp;
+                return;
+            }
+            currentNode = currentNode.next;
+        }
+        return null;
+    };
     return LinkedList;
 }());
-var obj = {
-    value: 6,
-    next: {
-        value: 5,
-        next: {
-            value: 4,
-            next: {
-                value: 3,
-                next: {
-                    value: 2,
-                    next: {
-                        value: 1,
-                        next: null,
-                    },
-                },
-            },
-        },
-    },
-};
+// Testing
+////////////
 // const list = new LinkedList(obj);
 // console.log(list.getSize()); // 6
 // const obj2 = new ListNode(
@@ -194,4 +198,9 @@ var list5 = new LinkedList(new ListNode(1, new ListNode(2, new ListNode(3))));
 console.log(list5.print());
 console.log(findLast(list5.head));
 list5.addAt(2, new ListNode(4, new ListNode(5, new ListNode(6))));
-console.log(list5.print());
+console.log(list5.print()); // 1 > 2 > 4 > 5 > 6 > 3
+list5.remove(5);
+console.log(list5.print()); // 1 > 2 > 4 > 6 > 3
+var list6 = new LinkedList(new ListNode(1, new ListNode(2)));
+list6.remove(2);
+console.log(list6.print()); // 1
