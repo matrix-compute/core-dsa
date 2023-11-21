@@ -87,6 +87,7 @@ class LinkedList {
     searchNode.next = node;
 
     const lastNode = findLast(node);
+    
     // Assign the .next value of the last node of the node we passed in to the original .next value stored in temp
     lastNode.next = temp;
   }
@@ -119,9 +120,9 @@ class LinkedList {
   /**
    * Determines length of LinkedList.
    * 
-   * Time complexity: `O(n)`
+   * Time complexity: `O(n)`, `n` being the number of ListNodes in the LinkedList to count.
    * 
-   * Space complexity: `O(1)`
+   * Space complexity: `O(1)`, no additional space is being used to calculate the length of the LinkedList.
    * 
    * @returns Length of LinkedList
    */

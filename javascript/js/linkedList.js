@@ -102,9 +102,9 @@ var LinkedList = /** @class */ (function () {
     /**
      * Determines length of LinkedList.
      *
-     * Time complexity: `O(n)`
+     * Time complexity: `O(n)`, `n` being the number of ListNodes in the LinkedList to count.
      *
-     * Space complexity: `O(1)`
+     * Space complexity: `O(1)`, no additional space is being used to calculate the length of the LinkedList.
      *
      * @returns Length of LinkedList
      */
