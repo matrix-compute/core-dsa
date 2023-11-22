@@ -31,6 +31,7 @@ var LinkedList = /** @class */ (function () {
     function LinkedList(head) {
         if (head === void 0) { head = null; }
         this.head = head;
+        this.length = 0;
     }
     /**
      * Adds a ListNode to the end of the LinkedList.
@@ -46,6 +47,7 @@ var LinkedList = /** @class */ (function () {
         // If the list is empty, then make the head the ListNode passed in to this function.
         if (!currentNode) {
             this.head = node;
+            this.length++;
             return;
         }
         // If the list is not empty, iterate to the end of the list and add the ListNode at the end of the list.
@@ -53,6 +55,7 @@ var LinkedList = /** @class */ (function () {
             currentNode = currentNode.next;
         }
         currentNode.next = node;
+        this.length++;
     };
     /**
      * Adds a new ListNode to the LinkedList. New ListNode will be added as the `.next` value of the requested ListNode.
@@ -76,6 +79,7 @@ var LinkedList = /** @class */ (function () {
         var lastNode = findLast(node);
         // Assign the .next value of the last node of the node we passed in to the original .next value stored in temp
         lastNode.next = temp;
+        this.length++;
     };
     /**
      * Searches the LinkedList for the given value. Returns the first instance of the value in the LinkedList or `null` if the value does not exist in the LinkedList.
@@ -97,8 +101,7 @@ var LinkedList = /** @class */ (function () {
             currentNode = currentNode.next;
         }
     };
-    LinkedList.prototype.getFirst = function () {
-    };
+    LinkedList.prototype.getFirst = function () { };
     /**
      * Determines length of LinkedList.
      *
@@ -149,13 +152,21 @@ var LinkedList = /** @class */ (function () {
      */
     LinkedList.prototype.remove = function (value) {
         var currentNode = this.head;
-        while (currentNode) {
-            if (currentNode.next.value === value) {
-                var temp = currentNode.next.next;
-                currentNode.next = temp;
-                return;
+        if (currentNode.value === value) {
+            this.head = currentNode.next;
+            this.length--;
+            return;
+        }
+        else {
+            while (currentNode) {
+                if (currentNode.next.value === value) {
+                    var temp = currentNode.next.next;
+                    currentNode.next = temp;
+                    this.length--;
+                    return;
+                }
+                currentNode = currentNode.next;
             }
-            currentNode = currentNode.next;
         }
         return null;
     };
@@ -163,44 +174,11 @@ var LinkedList = /** @class */ (function () {
 }());
 // Testing
 ////////////
-// const list = new LinkedList(obj);
-// console.log(list.getSize()); // 6
-// const obj2 = new ListNode(
-//   6,
-//   new ListNode(
-//     5,
-//     new ListNode(
-//       4,
-//       new ListNode(3, new ListNode(2, new ListNode(1, new ListNode(0))))
-//     )
-//   )
-// );
-// const list2 = new LinkedList(obj2);
-// console.log(list2.getSize()); // 7
-// list2.add(new ListNode(-1));
-// console.log(list2.getSize()); // 8
-// console.log(list2.print());
-// const list3 = new LinkedList(new ListNode(1, new ListNode(2)));
-// console.log(list3.print());
-// console.log(list3.find(2)); // ListNode { value: 2, next: null }
-// console.log(list3.find(3)); // -1
-// const list4 = new LinkedList(new ListNode(1, new ListNode(2, new ListNode(3))));
-// console.log(list4.print()); // 1 > 2 > 3
-// list4.addAt(2, new ListNode(4));
-// console.log(list4.print()); // 1 > 2 > 4 > 3
-// const largeNode = new ListNode(5, new ListNode(6, new ListNode(7)));
-// need to get last Node of node passed in to the add function, in the event there is more than one node to add, like multiple nodes. Find the last node in the list and set that node's .next value to the temp
-// console.log(largeNode);
-// list4.addAt(2, largeNode);
-// console.log(list4.print()); // 1 > 2 > 5 > 6 > 7 > 4 > 3
-// console.log(list4.findLast(largeNode));
-var list5 = new LinkedList(new ListNode(1, new ListNode(2, new ListNode(3))));
-console.log(list5.print());
-console.log(findLast(list5.head));
-list5.addAt(2, new ListNode(4, new ListNode(5, new ListNode(6))));
-console.log(list5.print()); // 1 > 2 > 4 > 5 > 6 > 3
-list5.remove(5);
-console.log(list5.print()); // 1 > 2 > 4 > 6 > 3
-var list6 = new LinkedList(new ListNode(1, new ListNode(2)));
-list6.remove(2);
-console.log(list6.print()); // 1
+var list = new LinkedList();
+list.add(new ListNode(1));
+list.add(new ListNode(2));
+list.add(new ListNode(3)); // 1 > 2 > 3
+console.log(list.length); // 3
+list.remove(1);
+console.log(list.print()); // 2 > 3
+console.log(list.length); // 2
